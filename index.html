@@ -465,6 +465,47 @@ body.loading{overflow:hidden}
 .mm-done:hover{background:var(--strawberry-deep)}
 @media(max-width:860px){.mm-grid{grid-template-columns:repeat(2,1fr)}.mm{height:92vh}.mm-head h2{font-size:25px}}
 @media(max-width:520px){.mm-head .top p{display:none}}
+
+/* ===== REAL PRODUCT IMAGERY ===== */
+.ppic{width:100%;height:100%;object-fit:contain;display:block}
+.item .em{background:linear-gradient(160deg,#FFF7EC,#F3E3C8);padding:3px}
+.item .em .ppic{transform:scale(1.28)}
+.sc-icon{width:112px;height:132px}
+.sc-icon .ppic{filter:drop-shadow(0 12px 16px rgba(0,0,0,.4))}
+.flav .scoop{position:relative}
+.flav-pic{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:12px;filter:drop-shadow(0 12px 14px rgba(42,21,16,.22));z-index:1}
+.expr-photo{width:100%;height:158px;object-fit:contain;background:linear-gradient(160deg,#EAF2FB,#D7E6F6);border-radius:14px;margin-bottom:10px;display:block}
+.mm-thumb .mm-pic{height:100%;width:100%;object-fit:contain;padding:12px;filter:drop-shadow(0 10px 12px rgba(42,21,16,.16))}
+img.store-illus{width:100%;height:270px;object-fit:cover;border-radius:24px;display:block}
+
+/* ===== MOBILE HARDENING ===== */
+@media(max-width:860px){
+  .hero-art{height:380px}
+  .hero-mascot{height:auto;max-height:350px}
+  .hero .cta{gap:10px}
+  .sec-head h2{font-size:32px}
+}
+@media(max-width:560px){
+  .hero{padding:40px 0 20px}
+  .hero-art{height:320px}
+  .hero-mascot{max-height:300px}
+  .hero .hero-badges{gap:14px}
+  .picks{padding:22px}
+  .item .pr{font-size:15px}
+  .mm{height:94vh;border-radius:20px}
+  .mm-head{padding:16px 18px 14px}
+  .mm-body{padding:18px}
+  .mm-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .mm-thumb{height:118px}
+  .mm-thumb .mm-pic{padding:8px}
+  .expr-photo{height:132px}
+  .sec-head h2{font-size:28px}
+  .wrap{padding:0 18px}
+}
+@media(max-width:400px){
+  .mm-grid{grid-template-columns:1fr}
+  .expr{flex:1 1 44%}
+}
 </style>
 </head>
 <body>
@@ -1093,48 +1134,97 @@ function gSundae(f){const[c1,c2]=FL[f]||FL.chocolate;return `<svg viewBox="0 0 1
 function gMug(){return `<svg viewBox="0 0 120 152" class="prod-svg" aria-hidden="true"><path d="M86 66h10c12 0 12 30 0 30h-8" fill="none" stroke="#6B4229" stroke-width="9"/><path d="M34 56h54v50c0 11-9 20-20 20H54c-11 0-20-9-20-20z" fill="#7A4A2E"/><path d="M34 56h54v10H34z" fill="#5A3420"/><ellipse cx="61" cy="60" rx="25" ry="7" fill="#C0875A"/><circle cx="52" cy="58" r="4.5" fill="#FFF6EC"/><circle cx="66" cy="59" r="3.6" fill="#FFF6EC"/><path d="M50 44c3-5 -2-9 1-14M64 44c3-5 -2-9 1-14" stroke="#D9C3B0" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".7"/></svg>`;}
 function prod(g,f,opt){opt=opt||{};return g==='cup'?gCup(f,opt.jelly):g==='sundae'?gSundae(f):g==='mug'?gMug():gCone(f,opt.dip);}
 
-/* fill popular-pick icons + showcase icons */
+/* ===== REAL BRAND PHOTOGRAPHY ===== */
+const IMG='https://www.superdeluxesofties.in/images/';
+const FIMG={vanilla:'10-day-10-flavour/Vanilla.png',chocolate:'10-day-10-flavour/Chocolate.png',belgian:'10-day-10-flavour/Chocolate.png',strawberry:'10-day-10-flavour/Strawberry.png',mango:'10-day-10-flavour/Mango.png',blackcurrant:'10-day-10-flavour/Blackcurrent.png',butterscotch:'10-day-10-flavour/Butter%20Scotch.png',pista:'10-day-10-flavour/Pista.png',badam:'10-day-10-flavour/Badam%20Kulfi.png',coffee:'10-day-10-flavour/Coffee.png',rosemilk:'10-day-10-flavour/Rose%20Milk.png'};
+function fimg(f){return IMG+(FIMG[f]||FIMG.vanilla);}
+function pic(src,alt){return `<img class="ppic" src="${src}" alt="${(alt||'').replace(/"/g,'')}" loading="lazy">`;}
+
+/* Popular picks thumbnails */
 (function(){
-  const map=[['Single Flavour Cone',['cone','vanilla']],['Double Flavoured Cone',['cone','chocolate']],['Dip Cone',['cone','vanilla',{dip:1}]],['Dip Cup · 125',['cup','chocolate']],['Dip Cup · 250',['cup','chocolate']],['Ice Cream Cup · 125',['cup','vanilla']],['Ice Cream Cup · 250',['cup','strawberry']],['Sundae',['sundae','chocolate']],['Jelly Crush',['cup','blackcurrant',{jelly:1}]],['Hot Chocolate',['mug','chocolate']]];
+  const map=[['Single Flavour Cone',fimg('vanilla')],['Double Flavoured Cone',fimg('chocolate')],['Dip Cone',fimg('chocolate')],['Dip Cup · 125',fimg('vanilla')],['Dip Cup · 250',fimg('chocolate')],['Ice Cream Cup · 125',fimg('strawberry')],['Ice Cream Cup · 250',fimg('mango')],['Sundae',IMG+'menu-items/exploded-chocolate-brownie.png'],['Jelly Crush',IMG+'menu-items/jelly-blackcurrant.png'],['Hot Chocolate',IMG+'menu-items/hot-chocolate-launch.jpg']];
   document.querySelectorAll('.picks .item').forEach(it=>{
-    const nm=it.querySelector('.nm').textContent;
-    const hit=map.find(m=>nm.indexOf(m[0])>-1);
-    if(hit){it.querySelector('.em').innerHTML=prod(hit[1][0],hit[1][1],hit[1][2]);}
-  });
-  document.querySelectorAll('.sc-icon').forEach(el=>{
-    el.innerHTML=prod(el.dataset.g,el.dataset.f,{jelly:el.dataset.jelly});
+    const nm=it.querySelector('.nm').textContent;const hit=map.find(m=>nm.indexOf(m[0])>-1);
+    if(hit)it.querySelector('.em').innerHTML=pic(hit[1],nm);
   });
 })();
 
+/* Showcase images */
+(function(){
+  const a=document.querySelector('.sc-a .sc-icon'),b=document.querySelector('.sc-b .sc-icon');
+  if(a)a.innerHTML=pic(IMG+'menu-items/exploded-chocolate-brownie.png','Chocolate Brownie Sundae');
+  if(b)b.innerHTML=pic(IMG+'menu-items/exploded-blackcurrant-jelly.png','Blackcurrant Jelly Crush');
+})();
+
+/* 10-day flavour cards → real cone renders */
+(function(){
+  const m={'Belgian Chocolate':'chocolate','Strawberry':'strawberry','Alphonso Mango':'mango','Black Currant':'blackcurrant','Butterscotch':'butterscotch','Pistachio':'pista','Badam Kulfi':'badam','Coffee Bean':'coffee','Creamy French Vanilla':'vanilla','Rosemilk':'rosemilk'};
+  document.querySelectorAll('.flav').forEach(c=>{
+    const h=c.querySelector('h3').textContent.trim();const f=m[h];if(!f)return;
+    const scoop=c.querySelector('.scoop');const emoji=scoop.querySelector('span:not(.daytag)');if(emoji)emoji.remove();
+    scoop.insertAdjacentHTML('beforeend',`<img class="flav-pic" src="${fimg(f)}" alt="${h}" loading="lazy">`);
+  });
+})();
+
+/* Mr. Deluxe expression photos + lead-card swap */
+(function(){
+  const EX={Happy:'happy_card.jpg',Winking:'wink_card.jpg',Caring:'caring_card.jpg',Surprised:'surprised_card.jpg',Confident:'confident_card.jpg',Victorious:'victorious_card.jpg'};
+  const face=document.getElementById('mrFace');
+  document.querySelectorAll('#exprRow .expr').forEach(card=>{
+    const label=card.querySelector('h4').textContent.trim();const sub=card.querySelector('span').textContent;
+    const url=IMG+'expressions/'+(EX[label]||'happy_card.jpg');
+    card.innerHTML=`<img class="expr-photo" src="${url}" alt="Mr. Deluxe ${label}" loading="lazy"><h4>${label}</h4><span>${sub}</span>`;
+    card.addEventListener('click',()=>{if(face)face.src=url;});
+  });
+  if(face){face.src=IMG+'expressions/happy_card.jpg';face.style.height='130px';}
+})();
+
+/* Storefront photo */
+(function(){
+  const sf=document.querySelector('svg.store-illus');
+  if(sf){const im=new Image();im.src=IMG+'storefront/storefront.jpg';im.alt='Super Deluxe Parlour storefront';im.className='store-illus';im.loading='lazy';sf.replaceWith(im);}
+})();
+
+/* Graceful fallback if any external brand image fails to load */
+document.addEventListener('error',function(e){
+  const t=e.target;
+  if(t&&t.tagName==='IMG'&&/ppic|mm-pic|flav-pic|expr-photo|store-illus/.test(t.className||'')){
+    t.style.opacity='0';
+  }
+},true);
+
 /* ========= FULL MENU & PRICES MODAL ========= */
+const MI='menu-items/';
 const MENU=[
  {cat:'Cones',pill:'From ₹25',sub:'Pick a flavour, or make it a double',items:[
-   {n:'Vanilla · Single Cone',p:'₹25',g:'cone',f:'vanilla'},{n:'Chocolate · Single Cone',p:'₹25',g:'cone',f:'chocolate'},
-   {n:'Mango · Single Cone',p:'₹25',g:'cone',f:'mango'},{n:'Strawberry · Single Cone',p:'₹25',g:'cone',f:'strawberry'},
-   {n:'Pista · Single Cone',p:'₹25',g:'cone',f:'pista'},{n:'Blackcurrant · Single Cone',p:'₹25',g:'cone',f:'blackcurrant'},
-   {n:'Butterscotch · Single Cone',p:'₹25',g:'cone',f:'butterscotch'},{n:'Pineapple · Single Cone',p:'₹25',g:'cone',f:'pineapple'},
-   {n:'Coffee · Single Cone',p:'₹25',g:'cone',f:'coffee'},{n:'Rosemilk · Single Cone',p:'₹25',g:'cone',f:'rosemilk'},
-   {n:'Double Flavoured Cone',p:'₹30',g:'cone',f:'chocolate',d:'Two flavours, one swirl'}]},
+   {n:'Vanilla · Single Cone',p:'₹25',img:FIMG.vanilla},{n:'Chocolate · Single Cone',p:'₹25',img:FIMG.chocolate},
+   {n:'Mango · Single Cone',p:'₹25',img:FIMG.mango},{n:'Strawberry · Single Cone',p:'₹25',img:FIMG.strawberry},
+   {n:'Pista · Single Cone',p:'₹25',img:FIMG.pista},{n:'Blackcurrant · Single Cone',p:'₹25',img:FIMG.blackcurrant},
+   {n:'Butterscotch · Single Cone',p:'₹25',img:FIMG.butterscotch},{n:'Coffee · Single Cone',p:'₹25',img:FIMG.coffee},
+   {n:'Badam Kulfi · Single Cone',p:'₹25',img:FIMG.badam},{n:'Rosemilk · Single Cone',p:'₹25',img:FIMG.rosemilk},
+   {n:'Double Flavoured Cone',p:'₹30',img:FIMG.chocolate,d:'Two flavours, one swirl'}]},
  {cat:'Dip Cones',pill:'₹40',sub:'Crunchy chocolate-dipped shell',items:[
-   {n:'Classic Choco Dip Cone',p:'₹40',g:'cone',f:'vanilla',dip:1},{n:'Strawberry Dip Cone',p:'₹40',g:'cone',f:'strawberry',dip:1}]},
+   {n:'Classic Choco Dip Cone',p:'₹40',img:FIMG.chocolate},{n:'Strawberry Dip Cone',p:'₹40',img:FIMG.strawberry}]},
  {cat:'Dip Cups',pill:'From ₹50',sub:'Scoops with a chocolate dip',items:[
-   {n:'Dip Cup · 125 ml',p:'₹50',g:'cup',f:'chocolate'},{n:'Dip Cup · 250 ml',p:'₹80',g:'cup',f:'chocolate'}]},
+   {n:'Dip Cup · 125 ml',p:'₹50',img:FIMG.vanilla},{n:'Dip Cup · 250 ml',p:'₹80',img:FIMG.chocolate}]},
  {cat:'Ice Cream Cups',pill:'From ₹35',sub:'Classic cups, any flavour',items:[
-   {n:'Ice Cream Cup · 125 ml',p:'₹35',g:'cup',f:'vanilla'},{n:'Ice Cream Cup · 250 ml',p:'₹60',g:'cup',f:'strawberry'}]},
+   {n:'Ice Cream Cup · 125 ml',p:'₹35',img:FIMG.strawberry},{n:'Ice Cream Cup · 250 ml',p:'₹60',img:FIMG.mango}]},
  {cat:'Sundaes',pill:'₹89',sub:'Loaded & layered',items:[
-   {n:'Chocolate Brownie Sundae',p:'₹89',g:'sundae',f:'chocolate'},{n:'Strawberry Sundae',p:'₹89',g:'sundae',f:'strawberry'},
-   {n:'Butterscotch Sundae',p:'₹89',g:'sundae',f:'butterscotch'}]},
+   {n:'Chocolate Brownie Sundae',p:'₹89',img:MI+'exploded-chocolate-brownie.png'},{n:'Strawberry Sundae',p:'₹89',img:FIMG.strawberry},
+   {n:'Butterscotch Sundae',p:'₹89',img:FIMG.butterscotch}]},
  {cat:'Signature Sundaes',pill:'Premium',sub:'Our chef specials',items:[
-   {n:'Belgian Overload',p:'₹129',g:'sundae',f:'belgian'},{n:'Mango Tango',p:'₹119',g:'sundae',f:'mango'}]},
+   {n:'Belgian Overload',p:'₹129',img:MI+'exploded-chocolate-brownie.png'},{n:'Mango Tango',p:'₹119',img:FIMG.mango}]},
  {cat:'Jelly Crush',pill:'₹60 / ₹99',sub:'Fruity jelly meets soft-serve',items:[
-   {n:'Blackcurrant Jelly Crush',p:'₹60/99',g:'cup',f:'blackcurrant',jelly:1},{n:'Strawberry Jelly Crush',p:'₹60/99',g:'cup',f:'strawberry',jelly:1}]},
+   {n:'Blackcurrant Jelly Crush',p:'₹60/99',img:MI+'jelly-blackcurrant.png'},{n:'Strawberry Jelly Crush',p:'₹60/99',img:MI+'jelly-strawberry.png'},
+   {n:'Mango Jelly Crush',p:'₹60/99',img:MI+'jelly-mango.png'},{n:'Pineapple Jelly Crush',p:'₹60/99',img:MI+'jelly-pineapple.png'},
+   {n:'Butterscotch Jelly Crush',p:'₹60/99',img:MI+'jelly-butterscotch-250.png'}]},
  {cat:'Combo & Smiles',pill:'Save ₹29',sub:'Better together',items:[
-   {n:'Sundae + Sundae',p:'₹159',g:'sundae',f:'chocolate',d:'was ₹188'},{n:'Sundae + Jelly Crush',p:'₹169',g:'cup',f:'blackcurrant',jelly:1,d:'was ₹198'},
-   {n:'Jelly Crush ×2',p:'₹179',g:'cup',f:'strawberry',jelly:1,d:'was ₹208'}]},
+   {n:'Sundae + Sundae',p:'₹159',img:MI+'combo-sundae-sundae.jpg',d:'was ₹188'},{n:'Sundae + Jelly Crush',p:'₹169',img:MI+'combo-sundae-jelly.jpg',d:'was ₹198'},
+   {n:'Jelly Crush + Jelly Crush',p:'₹179',img:MI+'combo-jelly-jelly.jpg',d:'was ₹208'}]},
  {cat:'Toppings',pill:'Add-ons',sub:'Make it yours',items:[
-   {n:'Chocolate Dip',p:'₹15',g:'cone',f:'vanilla',dip:1},{n:'Hot Chocolate',p:'₹49/79/119',g:'mug',f:'chocolate'}]},
+   {n:'Chocolate Dip',p:'₹15',img:FIMG.chocolate},{n:'Hot Chocolate',p:'₹49/79/119',img:MI+'hot-chocolate-launch.jpg'}]},
  {cat:'New Launch',pill:'★ New',sub:'Fresh on the menu',items:[
-   {n:'Badam Kulfi Softie',p:'₹25',g:'cone',f:'badam'},{n:'Rosemilk Softie',p:'₹25',g:'cone',f:'rosemilk'}]},
+   {n:'Badam Kulfi Softie',p:'₹25',img:FIMG.badam},{n:'Hot Chocolate',p:'₹49/79/119',img:MI+'hot-chocolate-launch.jpg'}]},
 ];
 const catsBar=document.getElementById('mmCats'),mmBody=document.getElementById('mmBody'),mmOverlay=document.getElementById('menuModal'),mmSearch=document.getElementById('mmSearch');
 let activeCat='Full Menu';
@@ -1148,7 +1238,7 @@ function render(){
     const items=g.items.filter(i=>!q||i.n.toLowerCase().includes(q));
     if(!items.length)return;
     html+=`<div class="mm-group"><div class="gh"><h3>${g.cat}</h3><span class="mm-pill">${g.pill}</span></div><div class="gsub">${g.sub}</div><div class="mm-grid">`;
-    items.forEach(i=>{html+=`<div class="mm-item"><div class="mm-thumb"><span class="badge">${i.p}</span>${prod(i.g,i.f,{dip:i.dip,jelly:i.jelly})}</div><h4>${i.n}</h4>${i.d?`<div class="d">${i.d}</div>`:''}</div>`;});
+    items.forEach(i=>{html+=`<div class="mm-item"><div class="mm-thumb"><span class="badge">${i.p}</span><img class="mm-pic" src="${IMG}${i.img}" alt="${i.n}" loading="lazy"></div><h4>${i.n}</h4>${i.d?`<div class="d">${i.d}</div>`:''}</div>`;});
     html+='</div></div>';
   });
   mmBody.innerHTML=html||'<div class="mm-empty">No treats match that search. Try another flavour!</div>';
