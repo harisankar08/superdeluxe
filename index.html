@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Super Deluxe Softies &amp; Smiles — A Little Scoop of Happiness</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
@@ -328,6 +329,23 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
 .to-top{width:44px;height:44px;border-radius:50%;background:var(--strawberry);color:#fff;border:0;cursor:pointer;font-size:20px;display:grid;place-items:center;transition:.25s}
 .to-top:hover{transform:translateY(-4px)}
 
+/* ====== REAL LOGO + MASCOT ====== */
+.brand-logo{height:50px;width:auto;display:block}
+@media(max-width:560px){.brand-logo{height:42px}}
+.mascot-stage{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:flex-end;justify-content:center;z-index:3;transition:transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.hero-mascot{height:500px;max-height:94%;width:auto;filter:drop-shadow(0 28px 26px rgba(42,21,16,.3));animation:floaty 5s ease-in-out infinite;transform-origin:bottom center}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-1.6deg)}50%{transform:translateY(-24px) rotate(1.6deg)}}
+.mascot-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:380px;height:380px;max-width:82%;border-radius:50%;background:radial-gradient(circle,rgba(255,92,122,.4),rgba(255,184,54,.14) 55%,transparent 70%);filter:blur(8px);z-index:1;animation:pulseGlow 4.5s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}50%{transform:translate(-50%,-50%) scale(1.09);opacity:1}}
+.mascot-shadow{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:230px;height:30px;max-width:60%;background:radial-gradient(ellipse,rgba(42,21,16,.22),transparent 70%);z-index:2;filter:blur(4px);animation:shad 5s ease-in-out infinite}
+@keyframes shad{0%,100%{width:230px;opacity:.5}50%{width:200px;opacity:.32}}
+.spark{position:absolute;z-index:4;color:var(--mango);animation:twinkle 2.6s ease-in-out infinite}
+.spark.s2{animation-delay:.8s}.spark.s3{animation-delay:1.4s}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(20deg)}}
+.brand-logo-chip{background:var(--milk);border-radius:16px;padding:12px 16px;display:inline-block}
+.brand-logo-chip img{height:46px;width:auto;display:block}
+.m-ill-img{border-radius:14px;object-fit:contain}
+
 /* FAB */
 .fab{position:fixed;bottom:24px;right:24px;z-index:80;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.6);animation:bob 4s ease-in-out infinite;transition:transform .25s}
 .fab:hover{transform:scale(1.1)}
@@ -395,13 +413,7 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
 <nav class="nav" id="nav">
   <div class="wrap">
     <a href="#hero" class="brand">
-      <svg class="logo" viewBox="0 0 48 48" fill="none">
-        <rect width="48" height="48" rx="14" fill="var(--strawberry)"/>
-        <path d="M24 10c-5 0-8 3.5-8 8 0 .5 0 1 .2 1.5C14.5 20 13 22 13 24.5c0 2 1.3 3.7 3.2 4.3L22 42c.8 1.8 3.2 1.8 4 0l5.8-13.2c1.9-.6 3.2-2.3 3.2-4.3 0-2.5-1.5-4.5-3.2-5 .2-.5.2-1 .2-1.5 0-4.5-3-8-8-8z" fill="#fff"/>
-        <circle cx="20" cy="18" r="1.8" fill="var(--strawberry)"/><circle cx="28" cy="18" r="1.8" fill="var(--strawberry)"/>
-        <path d="M20 22c1.2 1.4 6.8 1.4 8 0" stroke="var(--strawberry)" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-      <span>Super Deluxe<small>Softies &amp; Smiles</small></span>
+      <img class="brand-logo" src="logo.png" alt="Super Deluxe Softies &amp; Smiles">
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#story">About</a>
@@ -452,40 +464,23 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
         <circle cx="130" cy="420" r="60" fill="url(#gPist)" opacity=".55"/>
       </svg>
       <!-- rotating dashed ring -->
-      <svg class="spin" style="position:absolute;inset:8%;z-index:1" viewBox="0 0 400 400" aria-hidden="true">
-        <circle cx="200" cy="200" r="188" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 20" stroke-linecap="round" opacity=".8"/>
+      <svg class="spin" style="position:absolute;inset:6%;z-index:1" viewBox="0 0 400 400" aria-hidden="true">
+        <circle cx="200" cy="200" r="190" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 20" stroke-linecap="round" opacity=".8"/>
       </svg>
-      <!-- the softie cone -->
-      <div class="cone-stage">
-        <svg class="cone-wrap" viewBox="0 0 220 340" aria-hidden="true">
-          <!-- swirl -->
-          <path d="M110 24c-30 0-52 20-52 46 0 4 .5 8 1.5 11-8 4-13 11-13 20 0 6 2.5 11 7 15-6 4-10 10-10 18 0 7 3.5 13 9.5 16-4 4-6.5 9-6.5 15 0 14 28 22 56 22s56-8 56-22c0-6-2.5-11-6.5-15 6-3 9.5-9 9.5-16 0-8-4-14-10-18 4.5-4 7-9 7-15 0-9-5-16-13-20 1-3 1.5-7 1.5-11 0-26-22-46-52-46z" fill="url(#gStraw)"/>
-          <ellipse cx="110" cy="78" rx="30" ry="12" fill="#fff" opacity=".25"/>
-          <ellipse cx="110" cy="128" rx="44" ry="13" fill="#fff" opacity=".18"/>
-          <!-- cherry -->
-          <circle cx="110" cy="40" r="13" fill="var(--strawberry-deep)"/>
-          <path d="M110 28c2-8 8-11 14-10" stroke="var(--pistachio-deep)" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <!-- cone -->
-          <path d="M66 214h88l-38 108c-2.5 7-9.5 7-12 0z" fill="url(#gCone)"/>
-          <path d="M78 232h64M86 252h48M94 272h32" stroke="#C98A3E" stroke-width="3" opacity=".6" stroke-linecap="round"/>
-          <!-- sprinkles -->
-          <rect x="88" y="150" width="4" height="12" rx="2" fill="var(--mango)" transform="rotate(20 90 156)"/>
-          <rect x="128" y="160" width="4" height="12" rx="2" fill="var(--pistachio-deep)" transform="rotate(-25 130 166)"/>
-          <rect x="106" y="176" width="4" height="12" rx="2" fill="var(--grape)" transform="rotate(10 108 182)"/>
-        </svg>
+      <div class="mascot-glow"></div>
+      <div class="mascot-shadow"></div>
+      <!-- MR. DELUXE mascot (hero star) -->
+      <div class="mascot-stage" id="mascotStage">
+        <img class="hero-mascot" src="mr-deluxe.png" alt="Mr. Deluxe — Super Deluxe Softies superhero mascot holding an ice cream cone">
       </div>
+      <!-- sparkles -->
+      <svg class="spark" style="top:10%;left:12%" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
+      <svg class="spark s2" style="top:22%;right:14%" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
+      <svg class="spark s3" style="bottom:26%;left:8%" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
       <!-- floating chips -->
       <div class="float-chip fc1"><span class="em">🍦</span> Fresh Churn Daily</div>
       <div class="float-chip fc2"><span class="em">⭐</span> 4.9 Google Rating</div>
       <div class="float-chip fc3"><span class="em">🎉</span> 10 Flavours · 10 Days</div>
-      <!-- mascot mini -->
-      <svg class="mascot-badge" viewBox="0 0 120 120" aria-hidden="true">
-        <circle cx="60" cy="60" r="56" fill="#fff" stroke="var(--mango)" stroke-width="4"/>
-        <path d="M60 28c-13 0-22 9-22 21 0 2 .3 4 .8 6-4 2-6.8 6-6.8 11 0 8 7 14 16 14h24c9 0 16-6 16-14 0-5-2.8-9-6.8-11 .5-2 .8-4 .8-6 0-12-9-21-22-21z" fill="var(--strawberry)"/>
-        <circle cx="52" cy="52" r="4" fill="#fff"/><circle cx="68" cy="52" r="4" fill="#fff"/>
-        <circle cx="52" cy="53" r="2" fill="var(--ink)"/><circle cx="68" cy="53" r="2" fill="var(--ink)"/>
-        <path d="M51 62c4 4 14 4 18 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
-      </svg>
     </div>
   </div>
 </section>
@@ -738,12 +733,7 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
       <p>Many expressions, one pure heart — churning happiness, pure milk and cheerful smiles everyday.</p>
     </div>
     <div class="lead-card reveal">
-      <svg class="m-ill" viewBox="0 0 100 120" aria-hidden="true">
-        <path d="M50 20c-13 0-22 9-22 20 0 2 .3 4 .8 6C24 68 32 112 36 116c.8 1 2 1 2.8 0L50 92l11.2 24c.8 1 2 1 2.8 0 4-4 12-48 7.2-70 .5-2 .8-4 .8-6 0-11-9-20-22-20z" fill="var(--strawberry)"/>
-        <circle cx="42" cy="42" r="5" fill="#fff"/><circle cx="58" cy="42" r="5" fill="#fff"/>
-        <circle cx="42" cy="43" r="2.4" fill="var(--ink)"/><circle cx="58" cy="43" r="2.4" fill="var(--ink)"/>
-        <path d="M41 54c5 5 13 5 18 0" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-      </svg>
+      <img class="m-ill m-ill-img" src="mr-deluxe.png" alt="Mr. Deluxe mascot" style="height:120px">
       <div>
         <div class="q">Mr. Deluxe says</div>
         <p>"Every day is a great day when softies are involved!"</p>
@@ -811,12 +801,7 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
         <div class="big">2–3 Weeks</div>
         <div class="sm">Fast setup, start to scoop</div>
         <div class="fr-guarantee">
-          <svg class="m-ill" viewBox="0 0 100 120" aria-hidden="true">
-            <path d="M50 20c-13 0-22 9-22 20 0 2 .3 4 .8 6C24 68 32 112 36 116c.8 1 2 1 2.8 0L50 92l11.2 24c.8 1 2 1 2.8 0 4-4 12-48 7.2-70 .5-2 .8-4 .8-6 0-11-9-20-22-20z" fill="var(--strawberry)"/>
-            <circle cx="42" cy="42" r="5" fill="#fff"/><circle cx="58" cy="42" r="5" fill="#fff"/>
-            <circle cx="42" cy="43" r="2.4" fill="var(--ink)"/><circle cx="58" cy="43" r="2.4" fill="var(--ink)"/>
-            <path d="M41 54c5 5 13 5 18 0" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-          </svg>
+          <img class="m-ill m-ill-img" src="mr-deluxe.png" alt="Mr. Deluxe mascot" style="height:64px">
           <div><h5>Franchise Support Guarantee</h5><p>Full staff training &amp; daily dairy mix supply.</p></div>
         </div>
       </div>
@@ -862,13 +847,7 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="brand" style="color:#fff">
-          <svg class="logo" viewBox="0 0 48 48" fill="none">
-            <rect width="48" height="48" rx="14" fill="var(--strawberry)"/>
-            <path d="M24 10c-5 0-8 3.5-8 8 0 .5 0 1 .2 1.5C14.5 20 13 22 13 24.5c0 2 1.3 3.7 3.2 4.3L22 42c.8 1.8 3.2 1.8 4 0l5.8-13.2c1.9-.6 3.2-2.3 3.2-4.3 0-2.5-1.5-4.5-3.2-5 .2-.5.2-1 .2-1.5 0-4.5-3-8-8-8z" fill="#fff"/>
-          </svg>
-          <span>Super Deluxe<small style="color:var(--mango)">Softies &amp; Smiles</small></span>
-        </div>
+        <div class="brand-logo-chip" style="margin-bottom:16px"><img src="logo.png" alt="Super Deluxe Softies &amp; Smiles"></div>
         <p>Softies that make you smile. Memories that stay forever.</p>
         <div class="foot-tags"><span>🥛 100% Pure Milk</span><span>🌿 Pure Vegetarian</span></div>
         <div class="socials">
@@ -893,12 +872,7 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
         <a href="#reviews">Guest Reviews</a>
       </div>
       <div class="foot-mascot">
-        <svg class="m-ill" viewBox="0 0 100 120" aria-hidden="true">
-          <path d="M50 20c-13 0-22 9-22 20 0 2 .3 4 .8 6C24 68 32 112 36 116c.8 1 2 1 2.8 0L50 92l11.2 24c.8 1 2 1 2.8 0 4-4 12-48 7.2-70 .5-2 .8-4 .8-6 0-11-9-20-22-20z" fill="var(--strawberry)"/>
-          <circle cx="42" cy="42" r="5" fill="#fff"/><circle cx="58" cy="42" r="5" fill="#fff"/>
-          <circle cx="42" cy="43" r="2.4" fill="var(--ink)"/><circle cx="58" cy="43" r="2.4" fill="var(--ink)"/>
-          <path d="M41 54c5 5 13 5 18 0" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-        </svg>
+        <img class="m-ill m-ill-img" src="mr-deluxe.png" alt="Mr. Deluxe mascot" style="height:84px;margin:0 auto 10px">
         <div class="q">"See you at the parlour!"</div>
         <p>Guduvanchery, Chennai</p>
       </div>
@@ -946,15 +920,16 @@ document.getElementById('scrollR').addEventListener('click',()=>sc.scrollBy({lef
 // Back to top
 document.getElementById('toTop').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 
-// Parallax tilt on hero cone (subtle, pointer only)
+// Parallax tilt on hero mascot (subtle, pointer only)
 const art=document.querySelector('.hero-art');
-if(matchMedia('(pointer:fine)').matches && art){
+const stage=document.getElementById('mascotStage');
+if(matchMedia('(pointer:fine)').matches && art && stage){
   art.addEventListener('mousemove',e=>{
     const r=art.getBoundingClientRect();
     const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-    art.querySelector('.cone-wrap').style.transform=`translate(${x*18}px,${y*18}px) rotate(${x*3}deg)`;
+    stage.style.transform=`translate(${x*20}px,${y*12}px)`;
   });
-  art.addEventListener('mouseleave',()=>{art.querySelector('.cone-wrap').style.transform=''});
+  art.addEventListener('mouseleave',()=>{stage.style.transform=''});
 }
 </script>
 </body>
