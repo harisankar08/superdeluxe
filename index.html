@@ -1135,8 +1135,8 @@ function gMug(){return `<svg viewBox="0 0 120 152" class="prod-svg" aria-hidden=
 function prod(g,f,opt){opt=opt||{};return g==='cup'?gCup(f,opt.jelly):g==='sundae'?gSundae(f):g==='mug'?gMug():gCone(f,opt.dip);}
 
 /* ===== REAL BRAND PHOTOGRAPHY ===== */
-const IMG='https://www.superdeluxesofties.in/images/';
-const FIMG={vanilla:'10-day-10-flavour/Vanilla.png',chocolate:'10-day-10-flavour/Chocolate.png',belgian:'10-day-10-flavour/Chocolate.png',strawberry:'10-day-10-flavour/Strawberry.png',mango:'10-day-10-flavour/Mango.png',blackcurrant:'10-day-10-flavour/Blackcurrent.png',butterscotch:'10-day-10-flavour/Butter%20Scotch.png',pista:'10-day-10-flavour/Pista.png',badam:'10-day-10-flavour/Badam%20Kulfi.png',coffee:'10-day-10-flavour/Coffee.png',rosemilk:'10-day-10-flavour/Rose%20Milk.png'};
+const IMG='img/';
+const FIMG={vanilla:'10-day-10-flavour/Vanilla.png',chocolate:'10-day-10-flavour/Chocolate.png',belgian:'10-day-10-flavour/Chocolate.png',strawberry:'10-day-10-flavour/Strawberry.png',mango:'10-day-10-flavour/Mango.png',blackcurrant:'10-day-10-flavour/Blackcurrent.png',butterscotch:'10-day-10-flavour/Butterscotch.png',pista:'10-day-10-flavour/Pista.png',badam:'10-day-10-flavour/Badam-Kulfi.png',coffee:'10-day-10-flavour/Coffee.png',rosemilk:'10-day-10-flavour/Rosemilk.png'};
 function fimg(f){return IMG+(FIMG[f]||FIMG.vanilla);}
 function pic(src,alt){return `<img class="ppic" src="${src}" alt="${(alt||'').replace(/"/g,'')}" loading="lazy">`;}
 
