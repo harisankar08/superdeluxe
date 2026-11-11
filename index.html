@@ -333,8 +333,30 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
 .brand-logo{height:50px;width:auto;display:block}
 @media(max-width:560px){.brand-logo{height:42px}}
 .mascot-stage{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:flex-end;justify-content:center;z-index:3;transition:transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none}
-.hero-mascot{height:500px;max-height:94%;width:auto;filter:drop-shadow(0 28px 26px rgba(42,21,16,.3));animation:floaty 5s ease-in-out infinite;transform-origin:bottom center}
+.hero-mascot{height:500px;max-height:94%;width:auto;filter:drop-shadow(0 28px 26px rgba(42,21,16,.3));animation:swoopCatch 9s cubic-bezier(.34,.7,.3,1) infinite;transform-origin:bottom center;will-change:transform}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(-1.6deg)}50%{transform:translateY(-24px) rotate(1.6deg)}}
+/* dive in from upper-right → catch-bounce → hover → launch back out → loop */
+@keyframes swoopCatch{
+  0%{transform:translate(175px,-155px) rotate(21deg) scale(.84)}
+  9%{transform:translate(-10px,18px) rotate(-10deg) scale(1.06)}   /* catch impact / squash */
+  13%{transform:translate(6px,-7px) rotate(4deg) scale(.98)}        /* rebound */
+  17%{transform:translate(0,0) rotate(-1.6deg) scale(1)}            /* settle */
+  40%{transform:translateY(-20px) rotate(1.6deg) scale(1)}          /* idle hover */
+  63%{transform:translateY(0) rotate(-1.6deg) scale(1)}
+  80%{transform:translateY(-14px) rotate(1deg) scale(1)}
+  92%{transform:translate(70px,-78px) rotate(11deg) scale(.95)}     /* launch away */
+  100%{transform:translate(175px,-155px) rotate(21deg) scale(.84)}
+}
+/* speed streaks visible only during the flight portions */
+.swoosh{position:absolute;top:8%;right:6%;width:160px;z-index:2;color:var(--strawberry);opacity:0;animation:swoosh 9s linear infinite}
+@keyframes swoosh{0%{opacity:.85}7%{opacity:0}90%{opacity:0}95%{opacity:.85}100%{opacity:.85}}
+/* sparkle burst at the moment of the catch */
+.catch-burst{position:absolute;top:22%;left:33%;z-index:4;color:var(--mango);opacity:0;transform-origin:center;animation:catchBurst 9s ease-out infinite}
+@keyframes catchBurst{0%,8%{opacity:0;transform:scale(.2)}11%{opacity:1;transform:scale(1.1)}16%{opacity:0;transform:scale(1.7)}100%{opacity:0;transform:scale(1.7)}}
+@media(prefers-reduced-motion:reduce){
+  .hero-mascot{animation:floaty 5s ease-in-out infinite}
+  .swoosh,.catch-burst{display:none}
+}
 .mascot-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:380px;height:380px;max-width:82%;border-radius:50%;background:radial-gradient(circle,rgba(255,92,122,.4),rgba(255,184,54,.14) 55%,transparent 70%);filter:blur(8px);z-index:1;animation:pulseGlow 4.5s ease-in-out infinite}
 @keyframes pulseGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}50%{transform:translate(-50%,-50%) scale(1.09);opacity:1}}
 .mascot-shadow{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:230px;height:30px;max-width:60%;background:radial-gradient(ellipse,rgba(42,21,16,.22),transparent 70%);z-index:2;filter:blur(4px);animation:shad 5s ease-in-out infinite}
@@ -469,10 +491,20 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
       </svg>
       <div class="mascot-glow"></div>
       <div class="mascot-shadow"></div>
-      <!-- MR. DELUXE mascot (hero star) -->
+      <!-- MR. DELUXE mascot (hero star) — swoops in & catches the ice cream -->
       <div class="mascot-stage" id="mascotStage">
-        <img class="hero-mascot" src="mr-deluxe.png" alt="Mr. Deluxe — Super Deluxe Softies superhero mascot holding an ice cream cone">
+        <img class="hero-mascot" src="mr-deluxe.png" alt="Mr. Deluxe — Super Deluxe Softies superhero mascot swooping in to catch an ice cream cone">
       </div>
+      <!-- flight speed streaks -->
+      <svg class="swoosh" viewBox="0 0 160 90" fill="none" aria-hidden="true">
+        <path d="M20 22h120" stroke="currentColor" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+        <path d="M40 45h110" stroke="var(--mango)" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+        <path d="M14 68h94" stroke="var(--grape)" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+      </svg>
+      <!-- catch sparkle burst -->
+      <svg class="catch-burst" width="90" height="90" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0l2.6 8.4L23 11l-8.4 2.6L12 22l-2.6-8.4L1 11l8.4-2.6z"/>
+      </svg>
       <!-- sparkles -->
       <svg class="spark" style="top:10%;left:12%" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
       <svg class="spark s2" style="top:22%;right:14%" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
