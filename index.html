@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Super Deluxe Softies &amp; Smiles — A Little Scoop of Happiness</title>
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
@@ -251,6 +252,19 @@ section{position:relative}
 .expr .face{width:74px;height:74px;margin:0 auto 12px}
 .expr h4{font-size:15px}
 .expr span{font-size:11.5px;color:var(--ink-soft);font-weight:600}
+.expr-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:16px}
+.expr{flex:1 1 140px;max-width:178px}
+.expr.active{outline:3px solid var(--grape);outline-offset:3px;transform:translateY(-6px) scale(1.03)}
+.reel-card{flex:1 1 212px;max-width:248px;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);text-decoration:none;display:flex;flex-direction:column;background:#120d16;transition:transform .3s}
+.reel-card:hover{transform:translateY(-8px)}
+.reel-top{background:var(--ink);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.03em;padding:10px 14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.reel-top .ig{color:var(--mango)}
+.reel-thumb{position:relative;flex:1;min-height:168px;background:linear-gradient(150deg,#4a2a44,#6B3FA0 70%);display:grid;place-items:center;overflow:hidden}
+.reel-thumb::before{content:"🍦";position:absolute;font-size:120px;opacity:.12;transform:rotate(-12deg)}
+.reel-thumb .play{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;color:var(--strawberry-deep);font-size:22px;padding-left:5px;z-index:2;transition:.25s;box-shadow:0 8px 20px -6px rgba(0,0,0,.5)}
+.reel-card:hover .play{transform:scale(1.14)}
+.reel-thumb .yt{position:absolute;bottom:12px;left:0;right:0;text-align:center;color:#fff;font-weight:800;font-size:12px;z-index:2}
+.reel-foot{background:var(--milk);color:var(--ink);font-size:12px;font-weight:700;padding:11px 14px;text-align:center}
 
 /* ====== REVIEWS ====== */
 .reviews{background:var(--ink);color:var(--cream)}
@@ -333,30 +347,35 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
 .brand-logo{height:50px;width:auto;display:block}
 @media(max-width:560px){.brand-logo{height:42px}}
 .mascot-stage{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:flex-end;justify-content:center;z-index:3;transition:transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none}
-.hero-mascot{height:500px;max-height:94%;width:auto;filter:drop-shadow(0 28px 26px rgba(42,21,16,.3));animation:swoopCatch 9s cubic-bezier(.34,.7,.3,1) infinite;transform-origin:bottom center;will-change:transform}
-@keyframes floaty{0%,100%{transform:translateY(0) rotate(-1.6deg)}50%{transform:translateY(-24px) rotate(1.6deg)}}
-/* dive in from upper-right → catch-bounce → hover → launch back out → loop */
-@keyframes swoopCatch{
-  0%{transform:translate(175px,-155px) rotate(21deg) scale(.84)}
-  9%{transform:translate(-10px,18px) rotate(-10deg) scale(1.06)}   /* catch impact / squash */
-  13%{transform:translate(6px,-7px) rotate(4deg) scale(.98)}        /* rebound */
-  17%{transform:translate(0,0) rotate(-1.6deg) scale(1)}            /* settle */
-  40%{transform:translateY(-20px) rotate(1.6deg) scale(1)}          /* idle hover */
-  63%{transform:translateY(0) rotate(-1.6deg) scale(1)}
-  80%{transform:translateY(-14px) rotate(1deg) scale(1)}
-  92%{transform:translate(70px,-78px) rotate(11deg) scale(.95)}     /* launch away */
-  100%{transform:translate(175px,-155px) rotate(21deg) scale(.84)}
+/* ---- Vector Mr. Deluxe (catches a tricolour scoop) ---- */
+.mascot-svg{height:520px;max-height:97%;width:auto;filter:drop-shadow(0 24px 22px rgba(42,21,16,.26));overflow:visible}
+.mascot-svg g{transform-box:fill-box}
+.m-float{transform-origin:50% 100%;animation:mFloat 3.8s ease-in-out infinite}
+@keyframes mFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.m-cape{transform-origin:50% 8%;animation:mCape 2.3s ease-in-out infinite}
+@keyframes mCape{0%,100%{transform:rotate(-2deg) scaleX(1)}50%{transform:rotate(2.4deg) scaleX(1.05)}}
+.m-head{transform-origin:50% 100%;animation:mHead 3.8s ease-in-out infinite}
+@keyframes mHead{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+.m-eyes{transform-origin:50% 60%;animation:mBlink 4.4s infinite}
+@keyframes mBlink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+.m-arm{transform-origin:88% 94%;animation:mArm 6s cubic-bezier(.3,.7,.3,1) infinite}
+@keyframes mArm{0%,24%{transform:rotate(0) translateY(0)}31%{transform:rotate(6deg) translateY(5px)}41%{transform:rotate(-4deg) translateY(-9px)}54%,100%{transform:rotate(0) translateY(0)}}
+.m-scoop{transform-origin:50% 100%;animation:mScoop 6s cubic-bezier(.3,.7,.3,1) infinite}
+@keyframes mScoop{
+  0%{transform:translateY(-200px) scaleY(1);opacity:0}
+  6%{opacity:1}
+  26%{transform:translateY(0) scaleY(1)}
+  30%{transform:translateY(6px) scaleY(.8)}
+  35%{transform:translateY(-9px) scaleY(1.06)}
+  41%{transform:translateY(-9px) scaleY(1)}
+  54%{transform:translateY(0) scaleY(1)}
+  86%{transform:translateY(0);opacity:1}
+  93%{transform:translateY(-16px);opacity:0}
+  100%{transform:translateY(-200px);opacity:0}
 }
-/* speed streaks visible only during the flight portions */
-.swoosh{position:absolute;top:8%;right:6%;width:160px;z-index:2;color:var(--strawberry);opacity:0;animation:swoosh 9s linear infinite}
-@keyframes swoosh{0%{opacity:.85}7%{opacity:0}90%{opacity:0}95%{opacity:.85}100%{opacity:.85}}
-/* sparkle burst at the moment of the catch */
-.catch-burst{position:absolute;top:22%;left:33%;z-index:4;color:var(--mango);opacity:0;transform-origin:center;animation:catchBurst 9s ease-out infinite}
-@keyframes catchBurst{0%,8%{opacity:0;transform:scale(.2)}11%{opacity:1;transform:scale(1.1)}16%{opacity:0;transform:scale(1.7)}100%{opacity:0;transform:scale(1.7)}}
-@media(prefers-reduced-motion:reduce){
-  .hero-mascot{animation:floaty 5s ease-in-out infinite}
-  .swoosh,.catch-burst{display:none}
-}
+.m-burst{opacity:0;transform-origin:50% 50%;animation:mBurst 6s ease-out infinite}
+@keyframes mBurst{0%,25%{opacity:0;transform:scale(.3)}31%{opacity:1;transform:scale(1)}39%{opacity:0;transform:scale(1.8)}100%{opacity:0;transform:scale(1.8)}}
+@media(prefers-reduced-motion:reduce){.m-float,.m-cape,.m-head,.m-eyes,.m-arm,.m-scoop,.m-burst{animation:none}}
 .mascot-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:380px;height:380px;max-width:82%;border-radius:50%;background:radial-gradient(circle,rgba(255,92,122,.4),rgba(255,184,54,.14) 55%,transparent 70%);filter:blur(8px);z-index:1;animation:pulseGlow 4.5s ease-in-out infinite}
 @keyframes pulseGlow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}50%{transform:translate(-50%,-50%) scale(1.09);opacity:1}}
 .mascot-shadow{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:230px;height:30px;max-width:60%;background:radial-gradient(ellipse,rgba(42,21,16,.22),transparent 70%);z-index:2;filter:blur(4px);animation:shad 5s ease-in-out infinite}
@@ -490,21 +509,94 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
         <circle cx="200" cy="200" r="190" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 20" stroke-linecap="round" opacity=".8"/>
       </svg>
       <div class="mascot-glow"></div>
-      <div class="mascot-shadow"></div>
-      <!-- MR. DELUXE mascot (hero star) — swoops in & catches the ice cream -->
+      <!-- MR. DELUXE mascot (hero star) — vector; catches a tricolour scoop -->
       <div class="mascot-stage" id="mascotStage">
-        <img class="hero-mascot" src="mr-deluxe.png" alt="Mr. Deluxe — Super Deluxe Softies superhero mascot swooping in to catch an ice cream cone">
+        <svg class="mascot-svg" viewBox="0 0 340 492" role="img" aria-label="Mr. Deluxe — Super Deluxe Softies superhero mascot catching an ice cream scoop">
+          <ellipse class="m-shadow" cx="172" cy="474" rx="94" ry="14" fill="rgba(42,21,16,.18)"/>
+          <g class="m-float">
+            <!-- CAPE -->
+            <g class="m-cape">
+              <path d="M126,198 C102,214 90,322 108,384 C136,394 208,394 236,384 C254,322 242,214 218,198 C198,252 146,252 126,198 Z" fill="#CF1030"/>
+              <path d="M126,198 C112,228 118,300 126,372 L150,368 C142,300 140,246 150,210 Z" fill="#AC0C26" opacity=".55"/>
+              <path d="M218,198 C232,228 226,300 218,372 L194,368 C202,300 204,246 194,210 Z" fill="#AC0C26" opacity=".55"/>
+            </g>
+            <!-- BODY -->
+            <g class="m-body">
+              <!-- legs + boots -->
+              <path d="M142,352 L140,424 Q140,436 154,436 L164,436 L164,354 Z" fill="#2A43C8"/>
+              <path d="M200,352 L202,424 Q202,436 188,436 L178,436 L178,354 Z" fill="#2A43C8"/>
+              <path d="M132,420 C130,442 140,452 156,450 C170,449 172,434 166,422 Z" fill="#D8142E"/>
+              <path d="M210,420 C212,442 202,452 186,450 C172,449 170,434 176,422 Z" fill="#D8142E"/>
+              <!-- torso -->
+              <path d="M126,202 C122,189 145,181 171,181 C197,181 220,189 216,202 L224,308 C224,340 199,354 171,354 C143,354 118,340 118,308 Z" fill="#2A43C8"/>
+              <path d="M131,206 C128,235 128,295 140,342 C130,330 122,300 122,262 C122,236 126,214 131,206 Z" fill="#3B55E0" opacity=".7"/>
+              <!-- hanging arm + fist (viewer right) -->
+              <path d="M214,210 C232,220 238,258 231,292 C227,306 214,305 210,292 C206,262 205,232 208,212 Z" fill="#2A43C8"/>
+              <circle cx="223" cy="300" r="16" fill="#fff"/>
+              <path d="M231,286 c9,-3 10,9 2,11 c-6,1 -8,-5 -5,-9 Z" fill="#fff"/>
+              <!-- belt -->
+              <path d="M120,300 Q171,316 222,300 L222,318 Q171,334 120,318 Z" fill="#FFB836"/>
+              <circle cx="171" cy="309" r="11" fill="#D8142E"/>
+              <path d="M171,304 c-3,-4 -9,-1 -9,3 c0,4 6,7 9,9 c3,-2 9,-5 9,-9 c0,-4 -6,-7 -9,-3 Z" fill="#fff"/>
+              <!-- chest emblem -->
+              <path d="M150,214 Q171,207 192,214 L189,248 Q171,261 153,248 Z" fill="#fff" stroke="#D8142E" stroke-width="3"/>
+              <path d="M171,224 c-4,-5 -12,-2 -12,4 c0,6 8,11 12,14 c4,-3 12,-8 12,-14 c0,-6 -8,-9 -12,-4 Z" fill="#D8142E"/>
+            </g>
+            <!-- HEAD (soft-serve swirl) -->
+            <g class="m-head">
+              <path d="M100,180 C92,152 112,152 110,131 C92,127 100,104 121,106 C112,86 129,74 147,83 C140,64 159,52 175,63 C183,48 207,53 206,75 C225,75 233,98 216,112 C237,118 241,142 220,152 C237,158 236,181 219,185 C199,193 120,193 100,180 Z" fill="#FFF3DE"/>
+              <path d="M108,168 C142,179 202,179 230,164" stroke="#EAD6AC" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M112,142 C142,152 198,152 224,140" stroke="#EAD6AC" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M123,117 C146,125 192,125 212,115" stroke="#EAD6AC" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+              <path d="M136,93 C156,100 188,100 202,91" stroke="#EAD6AC" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M150,74 C162,80 182,80 192,72" stroke="#EAD6AC" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+              <ellipse cx="120" cy="150" rx="7" ry="11" fill="#fff" opacity=".6"/>
+              <!-- face -->
+              <g class="m-eyes">
+                <ellipse cx="151" cy="150" rx="13" ry="15.5" fill="#fff"/>
+                <ellipse cx="191" cy="150" rx="13" ry="15.5" fill="#fff"/>
+                <circle cx="154" cy="152" r="8" fill="#2A43C8"/>
+                <circle cx="188" cy="152" r="8" fill="#2A43C8"/>
+                <circle cx="154" cy="153" r="4" fill="#1A1A1A"/>
+                <circle cx="188" cy="153" r="4" fill="#1A1A1A"/>
+                <circle cx="151" cy="149" r="2.6" fill="#fff"/>
+                <circle cx="185" cy="149" r="2.6" fill="#fff"/>
+              </g>
+              <ellipse cx="131" cy="171" rx="9" ry="6" fill="#FF9DB0" opacity=".65"/>
+              <ellipse cx="209" cy="171" rx="9" ry="6" fill="#FF9DB0" opacity=".65"/>
+              <path d="M149,170 C159,192 183,192 193,170 C181,179 161,179 149,170 Z" fill="#C0392B"/>
+              <path d="M151,170 C161,176 181,176 191,170 L189,174 C179,178 163,178 153,174 Z" fill="#fff"/>
+            </g>
+            <!-- RAISED ARM + EMPTY CONE (viewer left) -->
+            <g class="m-arm">
+              <path d="M128,208 C104,208 80,172 70,134 C66,122 81,114 91,122 C105,152 121,188 135,210 Z" fill="#2A43C8"/>
+              <path d="M58,96 L102,96 L80,142 Z" fill="url(#gCone)"/>
+              <path d="M66,110 L90,134 M74,100 L96,120 M60,104 L74,118" stroke="#C98A3E" stroke-width="2.4" opacity=".55" stroke-linecap="round"/>
+              <ellipse cx="80" cy="96" rx="22" ry="7" fill="#C98A3E"/>
+              <ellipse cx="80" cy="95" rx="18" ry="5.5" fill="#7E5329"/>
+              <path d="M62,120 C60,140 72,151 80,151 C88,151 100,140 98,120 C92,131 68,131 62,120 Z" fill="#fff"/>
+            </g>
+            <!-- DROPPING TRICOLOUR SCOOP (caught in the cone) -->
+            <g class="m-scoop">
+              <ellipse cx="80" cy="90" rx="22" ry="12" fill="#138808"/>
+              <ellipse cx="80" cy="73" rx="19" ry="11" fill="#fff"/>
+              <ellipse cx="80" cy="58" rx="15" ry="10" fill="#FF9933"/>
+              <path d="M80,34 C70,34 66,46 68,54 C72,58 88,58 92,54 C94,46 90,34 80,34 Z" fill="#FF9933"/>
+              <circle cx="80" cy="38" r="4.5" fill="#D8142E"/>
+              <ellipse cx="70" cy="86" rx="5" ry="8" fill="#fff" opacity=".35"/>
+              <ellipse cx="70" cy="56" rx="4" ry="6" fill="#fff" opacity=".45"/>
+            </g>
+            <!-- CATCH SPARKLES -->
+            <g class="m-burst" fill="var(--mango)">
+              <path d="M80,40 l2.6,7 7,2.6 -7,2.6 -2.6,7 -2.6,-7 -7,-2.6 7,-2.6z"/>
+              <path d="M48,66 l2,5 5,2 -5,2 -2,5 -2,-5 -5,-2 5,-2z"/>
+              <path d="M114,72 l2,5 5,2 -5,2 -2,5 -2,-5 -5,-2 5,-2z"/>
+              <circle cx="56" cy="44" r="2.4"/>
+              <circle cx="106" cy="50" r="2.4"/>
+            </g>
+          </g>
+        </svg>
       </div>
-      <!-- flight speed streaks -->
-      <svg class="swoosh" viewBox="0 0 160 90" fill="none" aria-hidden="true">
-        <path d="M20 22h120" stroke="currentColor" stroke-width="7" stroke-linecap="round" opacity=".85"/>
-        <path d="M40 45h110" stroke="var(--mango)" stroke-width="7" stroke-linecap="round" opacity=".8"/>
-        <path d="M14 68h94" stroke="var(--grape)" stroke-width="7" stroke-linecap="round" opacity=".7"/>
-      </svg>
-      <!-- catch sparkle burst -->
-      <svg class="catch-burst" width="90" height="90" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 0l2.6 8.4L23 11l-8.4 2.6L12 22l-2.6-8.4L1 11l8.4-2.6z"/>
-      </svg>
       <!-- sparkles -->
       <svg class="spark" style="top:10%;left:12%" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
       <svg class="spark s2" style="top:22%;right:14%" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
@@ -765,16 +857,23 @@ footer{background:var(--choco);color:#F6E3D3;padding:70px 0 30px}
       <p>Many expressions, one pure heart — churning happiness, pure milk and cheerful smiles everyday.</p>
     </div>
     <div class="lead-card reveal">
-      <img class="m-ill m-ill-img" src="mr-deluxe.png" alt="Mr. Deluxe mascot" style="height:120px">
+      <img class="m-ill m-ill-img" id="mrFace" src="mr-deluxe.png" alt="Mr. Deluxe mascot" style="height:120px">
       <div>
-        <div class="q">Mr. Deluxe says</div>
-        <p>"Every day is a great day when softies are involved!"</p>
+        <div class="q">Mr. Deluxe says <span id="mrMood">(Happy)</span></div>
+        <p id="mrQuote">"Every day is a great day when softies are involved!"</p>
       </div>
     </div>
-    <div class="expr-grid">
-      <div class="expr reveal">🙂<svg class="face" viewBox="0 0 74 74"><circle cx="37" cy="37" r="35" fill="var(--strawberry)"/><circle cx="28" cy="32" r="4" fill="#fff"/><circle cx="46" cy="32" r="4" fill="#fff"/><path d="M26 44c6 6 16 6 22 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/></svg><h4>Happy</h4><span>Smiles Always</span></div>
+    <div class="expr-row" id="exprRow">
+      <div class="expr reveal active">🙂<svg class="face" viewBox="0 0 74 74"><circle cx="37" cy="37" r="35" fill="var(--strawberry)"/><circle cx="28" cy="32" r="4" fill="#fff"/><circle cx="46" cy="32" r="4" fill="#fff"/><path d="M26 44c6 6 16 6 22 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/></svg><h4>Happy</h4><span>Smiles Always</span></div>
+      <!-- reel is inserted after the 3rd card via order below -->
       <div class="expr reveal" data-d="1">😉<svg class="face" viewBox="0 0 74 74"><circle cx="37" cy="37" r="35" fill="var(--mango)"/><path d="M24 32h8" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/><circle cx="46" cy="32" r="4" fill="#fff"/><path d="M26 44c6 6 16 6 22 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/></svg><h4>Winking</h4><span>Sweet Mischief</span></div>
       <div class="expr reveal" data-d="2">🥰<svg class="face" viewBox="0 0 74 74"><circle cx="37" cy="37" r="35" fill="var(--pistachio-deep)"/><circle cx="28" cy="32" r="4" fill="#fff"/><circle cx="46" cy="32" r="4" fill="#fff"/><path d="M28 46c5 5 13 5 18 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/><circle cx="20" cy="42" r="4" fill="#fff" opacity=".5"/><circle cx="54" cy="42" r="4" fill="#fff" opacity=".5"/></svg><h4>Caring</h4><span>Pure Love</span></div>
+      <!-- REEL HIGHLIGHT -->
+      <a class="reel-card reveal" href="https://www.youtube.com/channel/UCx-0J0AmNvKu-cnTcuWZyxA" target="_blank" rel="noopener">
+        <div class="reel-top"><span>REEL HIGHLIGHT</span><span class="ig">@superdeluxesofties</span></div>
+        <div class="reel-thumb"><div class="play">▶</div><div class="yt">▶ Taste the Swirl Live</div></div>
+        <div class="reel-foot">Watch on YouTube Shorts ★</div>
+      </a>
       <div class="expr reveal">😮<svg class="face" viewBox="0 0 74 74"><circle cx="37" cy="37" r="35" fill="var(--grape)"/><circle cx="28" cy="31" r="4.4" fill="#fff"/><circle cx="46" cy="31" r="4.4" fill="#fff"/><ellipse cx="37" cy="48" rx="6" ry="8" fill="#fff"/></svg><h4>Surprised</h4><span>Pure Wonder</span></div>
       <div class="expr reveal" data-d="1">😎<svg class="face" viewBox="0 0 74 74"><circle cx="37" cy="37" r="35" fill="var(--ink)"/><rect x="18" y="28" width="16" height="10" rx="5" fill="var(--mango)"/><rect x="40" y="28" width="16" height="10" rx="5" fill="var(--mango)"/><path d="M28 50c5 4 13 4 18 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/></svg><h4>Confident</h4><span>No Compromise</span></div>
       <div class="expr reveal" data-d="2">🤩<svg class="face" viewBox="0 0 74 74"><circle cx="37" cy="37" r="35" fill="var(--strawberry-deep)"/><path d="M28 28l2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1z" fill="#fff"/><path d="M46 28l2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1z" fill="#fff"/><path d="M28 50c5 5 13 5 18 0" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/></svg><h4>Victorious</h4><span>Celebrate Life</span></div>
@@ -951,6 +1050,26 @@ document.getElementById('scrollR').addEventListener('click',()=>sc.scrollBy({lef
 
 // Back to top
 document.getElementById('toTop').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+// Mr. Deluxe expression quotes
+const mrQuotes={
+  Happy:"Every day is a great day when softies are involved!",
+  Winking:"Psst… ask for extra sprinkles. I won't tell!",
+  Caring:"Made with real milk and real love — just for you.",
+  Surprised:"Wait, genuine Belgian chocolate for just ₹49?! Unbelievable value!",
+  Confident:"Zero added oils. One hundred percent pure. No compromise.",
+  Victorious:"Another craving defeated — softies win again!"
+};
+const mrMood=document.getElementById('mrMood'),mrQuote=document.getElementById('mrQuote');
+document.querySelectorAll('#exprRow .expr').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const label=card.querySelector('h4').textContent.trim();
+    document.querySelectorAll('#exprRow .expr').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    mrMood.textContent='('+label+')';
+    mrQuote.textContent='"'+(mrQuotes[label]||'')+'"';
+  });
+});
 
 // Parallax tilt on hero mascot (subtle, pointer only)
 const art=document.querySelector('.hero-art');
